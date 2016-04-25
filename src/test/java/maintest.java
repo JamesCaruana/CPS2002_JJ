@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,9 +10,9 @@ import static org.junit.Assert.*;
  *
  * @author James
  */
-public class maintest {
+public class MainTest {
     
-    public maintest() {
+    public MainTest() {
     }
     
     @BeforeClass
@@ -28,11 +23,11 @@ public class maintest {
     public static void tearDownClass() {
     }
     
-    main myUnit;
+    Main myUnit;
 
     @Before
     public void setUp() {
-        myUnit = new main();
+        myUnit = new Main();
     }
     
     @After

@@ -8,7 +8,7 @@
  *
  * @author James
  */
-public class main {
+public class Main {
     
     public String concatenate(String one, String two){
         return one + two;
