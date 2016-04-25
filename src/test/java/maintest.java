@@ -10,9 +10,9 @@ import static org.junit.Assert.*;
  *
  * @author James
  */
-public class MainTest {
+public class maintest {
     
-    public MainTest() {
+    public maintest() {
     }
     
     @BeforeClass
@@ -23,11 +23,11 @@ public class MainTest {
     public static void tearDownClass() {
     }
     
-    Main myUnit;
+    main myUnit;
 
     @Before
     public void setUp() {
-        myUnit = new Main();
+        myUnit = new main();
     }
     
     @After
