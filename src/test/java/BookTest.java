@@ -1,71 +1,129 @@
-import org.junit.Assert;
+import org.junit.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import static org.junit.Assert.*;
 
 public class BookTest {
+    static Book b;
 
-    Book b;
-
-    @org.junit.Before
-    public void startup() {
-        b = new Book(1,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+    @BeforeClass
+    public static void startup() throws Exception {
+        b = new Book(0,"A Game Of Thrones" , "George R.R. Martin","Fantasy",1996,1);
     }
 
-    @org.junit.After
-    public void tearDown() throws Exception {
-
+    @Test
+    public void getTitle() throws Exception {
+        Assert.assertEquals("A Game Of Thrones",b.getTitle());
     }
 
-    @org.junit.Test
-    public void testGetTitle() throws Exception {
-        Assert.assertEquals("A Game of Thrones", b.getTitle());
+    @Test
+    public void getAuthor() throws Exception {
+        Assert.assertEquals("George R.R. Martin",b.getAuthor());
     }
 
-    @org.junit.Test
-    public void testGetAuthor() throws Exception {
-        Assert.assertEquals("G.R.R. Martin", b.getAuthor());
+    @Test
+    public void getYear() throws Exception {
+        Assert.assertEquals(1996,b.getYear());
     }
 
-    @org.junit.Test
-    public void testGetYear() throws Exception {
-        Assert.assertEquals(1996, b.getYear());
+    @Test
+    public void getEdition() throws Exception {
+        Assert.assertEquals(1,b.getEdition());
     }
 
-    @org.junit.Test
-    public void testGetEdition() throws Exception {
-        Assert.assertEquals(1, b.getEdition());
+    @Test
+    public void getISBN() throws Exception {
+        Assert.assertEquals(0,b.getISBN());
     }
 
-    @org.junit.Test
-    public void testIsBorrowed() throws Exception {
-        Assert.assertEquals(false, b.isBorrowed());
+    @Test
+    public void getLoanee() throws Exception {
+        User u = new User("name","surname",0,"0");
+        b.setLoanee(u);
+        Assert.assertEquals(u,b.getLoanee());
     }
 
-    @org.junit.Test
-    public void testSetTitle() throws Exception {
-        b.setTitle("Treasure Island");
-        Assert.assertEquals("Treasure Island", b.getTitle());
+    @Test
+    public void getLoanDate() throws Exception {
+        b.setLoanDate("29/03/2016","03:00 AM");
+        Date d;
+        String format = "dd/MM/yyyy hh:mm a";
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        String date  = "29/03/2016";
+        String time = "03:00 AM";
+        d = sdf.parse(date + " " + time);
+
+        Assert.assertEquals(d,b.getLoanDate());
     }
 
-    @org.junit.Test
-    public void testSetAuthor() throws Exception {
-        b.setAuthor("Robert Louis Stevenson");
-        Assert.assertEquals("Robert Louis Stevenson", b.getAuthor());
+    @Test
+    public void getId() throws Exception {
+        Assert.assertEquals(0,b.getId());
     }
 
-    @org.junit.Test
-    public void testSetYear() throws Exception {
-        b.setYear(1883);
-        Assert.assertEquals(1883, b.getYear());
+
+    @Test
+    public void setTitle() throws Exception {
+        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin","Fantasy",1999,1);
+        b.setTitle("Test");
+        Assert.assertEquals("Test",b.getTitle());
     }
 
-    @org.junit.Test
-    public void testSetEdition() throws Exception {
-        b.setEdition(1);
-        Assert.assertEquals(1, b.getEdition());
+    @Test
+    public void setAuthor() throws Exception {
+        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin","Fantasy",1999,1);
+        b.setAuthor("Test");
+        Assert.assertEquals("Test",b.getAuthor());
     }
 
-    @org.junit.Test
-    public void testSetBookBorrowed() throws Exception {
-        b.setBookBorrowed(true);
-        Assert.assertEquals(true, b.isBorrowed());
+    @Test
+    public void setYear() throws Exception {
+        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin","Fantasy",1999,1);
+        b.setYear(2000);
+        Assert.assertEquals(2000,b.getYear());
     }
+
+    @Test
+    public void setEdition() throws Exception {
+        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin","Fantasy",1999,1);
+        b.setEdition(2);
+        Assert.assertEquals(2,b.getEdition());
+    }
+
+    @Test
+    public void setISBN() throws Exception {
+        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin","Fantasy",1999,1);
+        b.setISBN(9);
+        Assert.assertEquals(9,b.getISBN());
+    }
+
+    @Test
+    public void setLoanee() throws Exception {
+        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin","Fantasy",1999,1);
+        User u = new User("Name1","Surname1",1001,"99999999");
+        b.setLoanee(u);
+        Assert.assertEquals(u,b.getLoanee());
+    }
+
+    @Test
+    public void setLoanDate() throws Exception {
+        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin","Fantasy",1999,1);
+        String date  = "29/03/2016";
+        String time = "03:00 AM";
+        b.setLoanDate(date,time);
+        String format = "dd/MM/yyyy hh:mm a";
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        Date d = sdf.parse(date + " " + time);
+
+        Assert.assertEquals(d,b.getLoanDate());
+    }
+
+    @Test
+    public void setLoanDate1() throws Exception {
+        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin","Fantasy",1999,1);
+        b.setLoanDate();
+        Date d = new Date();
+        Assert.assertEquals(d,b.getLoanDate());
+    }
+
 }

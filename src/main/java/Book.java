@@ -10,7 +10,7 @@ public class Book {
     private int year;
     private int edition;
     private Date loanDate;
-    private boolean bookBorrowed; //to remove
+    private User loanee;
 
     private static long bookIdCounter = 0;
 
@@ -23,10 +23,9 @@ public class Book {
         this.edition = edition;
         this.isbn = isbn;
         this.loanDate = null;
+        this.loanee = null;
         this.id = bookIdCounter;
         bookIdCounter++;
-        bookBorrowed = false;
-
     }
     
     // getters
@@ -54,6 +53,10 @@ public class Book {
         return isbn;
     }
 
+    public User getLoanee() {
+        return loanee;
+    }
+
     public Date getLoanDate() {
         return loanDate;
     }
@@ -62,9 +65,6 @@ public class Book {
         return id;
     }
 
-    public boolean isBorrowed() {
-        return bookBorrowed;
-    }
 
     // setters
     public void setTitle(String title) {
@@ -91,8 +91,8 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public void setBookBorrowed(boolean bookBorrowed){
-        this.bookBorrowed = bookBorrowed;
+    public void setLoanee(User loanee) {
+        this.loanee = loanee;
     }
 
     public void setLoanDate(String date , String time) {
