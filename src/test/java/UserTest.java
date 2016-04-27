@@ -1,13 +1,9 @@
 import org.junit.*;
-
 import java.util.Vector;
-
 import java.util.Vector;
-
 import static org.junit.Assert.*;
 
 public class UserTest {
-   
     User u1;
     @Before
     public void startup() throws Exception {
@@ -40,6 +36,12 @@ public class UserTest {
     }
 
     @Test
+    public void getLoanedBooks() throws Exception {
+        Vector<Book>b = new Vector<Book>();
+        Assert.assertEquals(b,u1.getLoanedBooks());
+    }
+
+    @Test
     public void setName() throws Exception {
         u1.setName("Name2");
         Assert.assertEquals("Name2",u1.getName());
@@ -63,4 +65,39 @@ public class UserTest {
         Assert.assertEquals("5",u1.getPhoneNumber());
     }
     
+    @Test
+    public void addLoanedBook() throws Exception {
+        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+        User u = new User("Name1","Surname1",1001,"99999999");
+        Vector<Book>vb = new Vector<Book>();
+        vb.add(b);
+        u.addLoanedBook(b);
+        Assert.assertEquals(vb,u.getLoanedBooks());
+    }
+
+    @Test (expected = MaximumLoanedBooksException.class)
+    public void throwsMaximumLoanedBooksException() throws Exception{
+        User u = new User("Name1","Surname1",1001,"99999999");
+        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+
+        u.addLoanedBook(b);
+        u.addLoanedBook(b);
+        u.addLoanedBook(b);
+        u.addLoanedBook(b);
+
+    }
+
+    @Test (expected = BookOverdueException.class)
+    public void throwsBookOverdueException() throws Exception{
+        User u = new User("Name1","Surname1",1001,"99999999");
+        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+
+        u.addLoanedBook(b);
+        u.addLoanedBook(b);
+        b.setLoanDate("20/03/2016","03:00 AM");
+        u.addLoanedBook(b);
+
+    }
+
+
 }
