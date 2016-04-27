@@ -1,33 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author James
- */
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Book {
-    
+    private int isbn;
+    private long id;
     private String title;
     private String author;
     private String genre;
     private int year;
     private int edition;
-    private int bId;
-    private boolean bookBorrowed;
+    private Date loanDate;
+    private boolean bookBorrowed; //to remove
+
+    private static long bookIdCounter = 0;
 
     // Create a Book
-    public Book(String newTitle, String newAuthor, String newGenre, int newYear, int newEdition, int newBid){
-        title = newTitle;
-        author = newAuthor;
-        genre = newGenre;
-        year = newYear;
-        edition = newEdition;
-        bId = newBid;
+    public Book(int isbn ,String title, String author, String genre, int year, int edition){
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.year = year;
+        this.edition = edition;
+        this.isbn = isbn;
+        this.loanDate = null;
+        this.id = bookIdCounter;
+        bookIdCounter++;
         bookBorrowed = false;
+
     }
     
     // getters
@@ -51,14 +50,21 @@ public class Book {
         return edition;
     }
     
-    public int getBid() {
-        return bId;
+    public int getISBN() {
+        return isbn;
+    }
+
+    public Date getLoanDate() {
+        return loanDate;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public boolean isBorrowed() {
         return bookBorrowed;
     }
-
 
     // setters
     public void setTitle(String title) {
@@ -81,15 +87,31 @@ public class Book {
         this.edition = edition;
     }
     
-    public void setB_ID(int B_ID) {
-        this.bId = B_ID;
+    public void setISBN(int isbn) {
+        this.isbn = isbn;
     }
 
     public void setBookBorrowed(boolean bookBorrowed){
         this.bookBorrowed = bookBorrowed;
     }
 
-    
+    public void setLoanDate(String date , String time) {
+        String format = "dd/MM/yyyy hh:mm a";
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+
+        try{
+            loanDate = sdf.parse(date + " " + time);   //parse loanDate
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void setLoanDate(){
+        loanDate = new Date();
+    }
+
+
     @Override
     public String toString() {
         return ("Title of Book: " +         this.getTitle() +
@@ -97,6 +119,6 @@ public class Book {
                 "\nGenre of Book: " +       this.getGenre() +
                 "\nYear of Publication: " + this.getYear() +
                 "\nEdition: " +             this.getEdition() +
-                "\nID of Book: " +          this.getBid());
+                "\nISBN of Book: " +          this.getISBN());
     }
 }
