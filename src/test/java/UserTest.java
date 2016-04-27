@@ -98,6 +98,31 @@ public class UserTest {
         u.addLoanedBook(b);
 
     }
+    
+    @Test
+    public void removeLoanedBook() throws Exception {
+        User u = new User("Name1","Surname1",1001,"99999999");
+        Book b = new Book(1,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+
+        Vector<Book>vb = new Vector<Book>();
+        vb.add(b);
+
+        u.addLoanedBook(b);
+        u.addLoanedBook(b);
+
+        u.removeLoanedBook(b);
+        Assert.assertEquals(vb,u.getLoanedBooks());
+
+    }
+
+    @Test (expected = BookNotFoundException.class)
+    public void throwsBookNotFoundException() throws Exception{
+        User u = new User("Name1","Surname1",1001,"99999999");
+        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+        Book b2 = new Book(5,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+        u.addLoanedBook(b);
+        u.removeLoanedBook(b2);
+    }
 
 
 }

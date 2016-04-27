@@ -86,4 +86,15 @@ public class User {
         System.out.println(sdf.format(b.getLoanDate()));
         loanedBooks.add(b);
     }
+    
+    public void removeLoanedBook(Book b) throws Exception{
+        for(int i = 0; i < loanedBooks.size(); i++){ //find book
+            if(b == loanedBooks.get(i)){
+                loanedBooks.remove(i);
+                System.out.println("Book removed");
+                return;
+            }
+        }
+        throw new BookNotFoundException("ERROR : User with id "+ id + " has not loaned book with book id "+b.getId());
+    }
 }
