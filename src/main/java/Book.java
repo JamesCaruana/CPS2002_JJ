@@ -6,7 +6,7 @@ public class Book {
     private long id;
     private String title;
     private String author;
-    private String genre;
+    private Genre genre;
     private int year;
     private int edition;
     private Date loanDate;
@@ -15,7 +15,7 @@ public class Book {
     private static long bookIdCounter = 0;
 
     // Create a Book
-    public Book(int isbn ,String title, String author, String genre, int year, int edition){
+    public Book(int isbn ,String title, String author, Genre genre, int year, int edition){
         this.title = title;
         this.author = author;
         this.genre = genre;
@@ -37,7 +37,7 @@ public class Book {
         return author;
     }
     
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
     
@@ -75,7 +75,7 @@ public class Book {
         this.author = author;
     }
     
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
     
@@ -95,30 +95,19 @@ public class Book {
         this.loanee = loanee;
     }
 
-    public void setLoanDate(String date , String time) {
+    public void setLoanDate(String date , String time) throws Exception{
         String format = "dd/MM/yyyy hh:mm a";
         SimpleDateFormat sdf = new SimpleDateFormat(format);
 
         try{
             loanDate = sdf.parse(date + " " + time);   //parse loanDate
         }catch(Exception e){
-            e.printStackTrace();
+            throw e;
         }
-
     }
 
     public void setLoanDate(){
         loanDate = new Date();
     }
 
-
-    @Override
-    public String toString() {
-        return ("Title of Book: " +         this.getTitle() +
-                "\nAuthor of Book: " +      this.getAuthor() +
-                "\nGenre of Book: " +       this.getGenre() +
-                "\nYear of Publication: " + this.getYear() +
-                "\nEdition: " +             this.getEdition() +
-                "\nISBN of Book: " +          this.getISBN());
-    }
 }

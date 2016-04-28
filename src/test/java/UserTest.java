@@ -1,18 +1,20 @@
 import org.junit.*;
+
 import java.util.Vector;
+
+
 import java.util.Vector;
+
 import static org.junit.Assert.*;
 
+/**
+ * Created by jamievella on 27/04/2016.
+ */
 public class UserTest {
     User u1;
     @Before
     public void startup() throws Exception {
         u1 = new User("Name1","Surname1",1001,"99999999");
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
     }
 
     @Test
@@ -64,10 +66,10 @@ public class UserTest {
         u1.setPhoneNumber("5");
         Assert.assertEquals("5",u1.getPhoneNumber());
     }
-    
+
     @Test
     public void addLoanedBook() throws Exception {
-        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", Genre.FANTASY, 1996, 1);
         User u = new User("Name1","Surname1",1001,"99999999");
         Vector<Book>vb = new Vector<Book>();
         vb.add(b);
@@ -78,7 +80,7 @@ public class UserTest {
     @Test (expected = MaximumLoanedBooksException.class)
     public void throwsMaximumLoanedBooksException() throws Exception{
         User u = new User("Name1","Surname1",1001,"99999999");
-        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", Genre.FANTASY, 1996, 1);
 
         u.addLoanedBook(b);
         u.addLoanedBook(b);
@@ -90,7 +92,7 @@ public class UserTest {
     @Test (expected = BookOverdueException.class)
     public void throwsBookOverdueException() throws Exception{
         User u = new User("Name1","Surname1",1001,"99999999");
-        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", Genre.FANTASY, 1996, 1);
 
         u.addLoanedBook(b);
         u.addLoanedBook(b);
@@ -98,11 +100,11 @@ public class UserTest {
         u.addLoanedBook(b);
 
     }
-    
+
     @Test
-    public void removeLoanedBook() throws Exception {
+   public void removeLoanedBook() throws Exception {
         User u = new User("Name1","Surname1",1001,"99999999");
-        Book b = new Book(1,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+        Book b = new Book(1,"A Game of Thrones", "G.R.R. Martin",Genre.FANTASY, 1996, 1);
 
         Vector<Book>vb = new Vector<Book>();
         vb.add(b);
@@ -118,11 +120,10 @@ public class UserTest {
     @Test (expected = BookNotFoundException.class)
     public void throwsBookNotFoundException() throws Exception{
         User u = new User("Name1","Surname1",1001,"99999999");
-        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
-        Book b2 = new Book(5,"A Game of Thrones", "G.R.R. Martin", "Fantasy", 1996, 1);
+        Book b = new Book(2,"A Game of Thrones", "G.R.R. Martin", Genre.FANTASY, 1996, 1);
+        Book b2 = new Book(5,"A Game of Thrones", "G.R.R. Martin", Genre.FANTASY, 1996, 1);
         u.addLoanedBook(b);
         u.removeLoanedBook(b2);
     }
-
 
 }
