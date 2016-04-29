@@ -13,13 +13,14 @@ import static org.junit.Assert.*;
 public class CatalogueTest {
 
     static Catalogue c;
-    static Book b1, b2;
+    static Book b1, b2, b3;
 
     @Before
     public void setUp() throws Exception {
         c = new Catalogue();
         b1 = new Book(1,0 ,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         b2 = new Book(2,1, "The Hitchhiker's Guide to the Galaxy" , "Douglas Adams",Genre.SCIENCE_FICTION,1979,1);
+        b3 = new Book(3,2,"A Game Of Thrones" , "George R.R Martin",Genre.FANTASY,1996,2);
     }
 
     @After
@@ -74,6 +75,18 @@ public class CatalogueTest {
         c.removeBook(b1);
         Assert.assertEquals(vb,c.getAllBooks());
 
+    }
+    
+    @Test
+    public void testSearchByTitle() throws Exception {
+        Vector<Book> vb = new Vector<Book>();
+        vb.add(b1);
+        vb.add(b3);
+
+        c.addBook(b1);
+        c.addBook(b2);
+        c.addBook(b3);
+        Assert.assertEquals(vb,c.searchByTitle("A"));
     }
     
 }

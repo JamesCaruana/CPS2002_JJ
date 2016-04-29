@@ -29,4 +29,15 @@ public class Catalogue {
         }
         throw new BookNotFoundException("ERROR : Book with id "+b.getId()+" was not found");
     }
+    
+    Vector<Book> searchByTitle(String search) {
+        Vector<Book> bookVector = new Vector<Book>();
+        for(int count = 0; count < bookList.size(); count++){
+            if (bookList.get(count).getTitle().contains(search)) {
+                bookVector.add(bookList.get(count));
+                System.out.println(bookList.get(count).toString());
+            }
+        }
+        return bookVector;
+    }
 }
