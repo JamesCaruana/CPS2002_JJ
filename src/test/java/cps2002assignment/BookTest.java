@@ -146,4 +146,10 @@ public class BookTest {
         Assert.assertEquals(d,b.getLoanDate());
     }
 
+    @Test
+    public void setLoanDate2() throws Exception {
+        b.setLoanDate(null);
+        Assert.assertEquals(null,b.getLoanDate());
+    }
+
 }

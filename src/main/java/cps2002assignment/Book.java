@@ -65,7 +65,6 @@ public class Book {
         return id;
     }
 
-
     // setters
     public void setTitle(String title) {
         this.title = title;
@@ -110,5 +109,8 @@ public class Book {
         loanDate = new Date();
     }
 
-
+    public void setLoanDate(Object o){
+        loanDate = null;
+    }
+    
 }
