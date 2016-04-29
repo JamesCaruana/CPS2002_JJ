@@ -20,4 +20,16 @@ public class Library {
         }
         userVector.add(u);
     }
+    
+    public void removeUser(User u) throws Exception{
+        for(int i = 0; i < userVector.size(); i++){ //find user
+            if(u == userVector.get(i)){
+                userVector.remove(i);
+                System.out.println("User removed");
+                return;
+            }
+        }
+        throw new UserNotFoundException("User with id "+u.getUserID()+" was not found");
+    }
+
 }

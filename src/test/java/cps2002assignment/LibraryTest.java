@@ -44,4 +44,21 @@ public class LibraryTest {
         l.addUser(u0);
         l.addUser(u3);
     }
+    
+    @Test
+    public void testRemoveUser() throws Exception {
+        Vector<User> vu = new Vector<User>();
+        vu.add(u0);
+        l.addUser(u0);
+        l.addUser(u1);
+        l.removeUser(u1);
+        Assert.assertEquals(vu,l.getAllUsers());
+    }
+
+    @Test (expected = UserNotFoundException.class)
+    public void testUserNotFoundException() throws Exception {
+        Vector<User> vu = new Vector<User>();
+        l.removeUser(u1);
+        Assert.assertEquals(vu, l.getAllUsers());
+    }
 }
