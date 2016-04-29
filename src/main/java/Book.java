@@ -12,10 +12,9 @@ public class Book {
     private Date loanDate;
     private User loanee;
 
-    private static long bookIdCounter = 0;
 
     // Create a Book
-    public Book(int isbn ,String title, String author, Genre genre, int year, int edition){
+    public Book(long bookId, int isbn ,String title, String author, Genre genre, int year, int edition){
         this.title = title;
         this.author = author;
         this.genre = genre;
@@ -24,8 +23,7 @@ public class Book {
         this.isbn = isbn;
         this.loanDate = null;
         this.loanee = null;
-        this.id = bookIdCounter;
-        bookIdCounter++;
+        this.id = bookId;
     }
     
     // getters
@@ -109,5 +107,6 @@ public class Book {
     public void setLoanDate(){
         loanDate = new Date();
     }
+
 
 }

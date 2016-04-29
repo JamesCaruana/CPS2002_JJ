@@ -11,11 +11,13 @@ import static org.junit.Assert.*;
 public class CatalogueTest {
 
     static Catalogue c;
-    
-    
+    static Book b1, b2;
+
     @Before
     public void setUp() throws Exception {
         c = new Catalogue();
+        b1 = new Book(1,0 ,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        b2 = new Book(2,1, "The Hitchhiker's Guide to the Galaxy" , "Douglas Adams",Genre.SCIENCE_FICTION,1979,1);
     }
 
     @After
@@ -25,16 +27,15 @@ public class CatalogueTest {
 
     @Test
     public void testGetBookList() throws Exception {
-        Vector<Book> b = new Vector<Book>();
+        Vector<Book> b =  new Vector<Book>();
         Assert.assertEquals(b, c.getBookList());
     }
-    
+
     @Test
     public void testAddBook() throws Exception {
         Vector<Book> vb = new Vector<Book>();
-        Book b0 = new Book(0,"A Game Of Thrones" , "George R.R. Martin",Genre.FANTASY,1996,1);
-        vb.add(b0);
-        c.addBook(b0);
+        vb.add(b1);
+        c.addBook(b1);
         Assert.assertEquals(vb,c.getBookList());
     }
     

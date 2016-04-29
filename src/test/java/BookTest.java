@@ -8,7 +8,7 @@ public class BookTest {
 
     @BeforeClass
     public static void startup() throws Exception {
-        b = new Book(0,"A Game Of Thrones" , "George R.R. Martin",Genre.FANTASY,1996,1);
+        b = new Book(0,0,"A Game Of Thrones" , "George R.R. Martin",Genre.FANTASY,1996,1);
     }
 
     @Test
@@ -68,49 +68,49 @@ public class BookTest {
 
     @Test
     public void setTitle() throws Exception {
-        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         b.setTitle("Test");
         Assert.assertEquals("Test",b.getTitle());
     }
 
     @Test
     public void setAuthor() throws Exception {
-        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         b.setAuthor("Test");
         Assert.assertEquals("Test",b.getAuthor());
     }
 
     @Test
     public void setYear() throws Exception {
-        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         b.setYear(2000);
         Assert.assertEquals(2000,b.getYear());
     }
 
     @Test
     public void setEdition() throws Exception {
-        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         b.setEdition(2);
         Assert.assertEquals(2,b.getEdition());
     }
 
     @Test
     public void setISBN() throws Exception {
-        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b = new Book(0,0,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         b.setISBN(9);
         Assert.assertEquals(9,b.getISBN());
     }
 
     @Test
     public void setGenre() throws Exception {
-        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b = new Book(0,0,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         b.setGenre(Genre.DRAMA);
         Assert.assertEquals(Genre.DRAMA,b.getGenre());
     }
 
     @Test
     public void setLoanee() throws Exception {
-        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b = new Book(0,0,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         User u = new User("Name1","Surname1",1001,"99999999");
         b.setLoanee(u);
         Assert.assertEquals(u,b.getLoanee());
@@ -118,7 +118,7 @@ public class BookTest {
 
     @Test
     public void setLoanDate() throws Exception {
-        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         String date  = "29/03/2016";
         String time = "03:00 AM";
         b.setLoanDate(date,time);
@@ -138,7 +138,7 @@ public class BookTest {
 
     @Test
     public void setLoanDate1() throws Exception {
-        Book b = new Book(1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         b.setLoanDate();
         Date d = new Date();
         Assert.assertEquals(d,b.getLoanDate());
