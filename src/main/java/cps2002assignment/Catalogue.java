@@ -40,4 +40,15 @@ public class Catalogue {
         }
         return bookVector;
     }
+    
+    Vector<Book> searchByGenre(Genre g) {
+        Vector<Book> bookVector = new Vector<Book>();
+        for(int count = 0; count < bookList.size(); count++){
+            if (bookList.get(count).getGenre().equals(g)) {
+                bookVector.add(bookList.get(count));
+                System.out.println(bookList.get(count).toString());
+            }
+        }
+        return bookVector;
+    }
 }
