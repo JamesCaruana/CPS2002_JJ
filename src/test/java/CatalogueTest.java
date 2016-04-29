@@ -39,4 +39,16 @@ public class CatalogueTest {
         Assert.assertEquals(vb,c.getBookList());
     }
     
+    @Test (expected = BookNotFoundException.class)
+    public void testThrowBookNotFoundException() throws Exception {
+
+        Vector<Book>vb = new Vector<Book>();
+
+        c.addBook(b2);
+
+        c.removeBook(b1);
+        Assert.assertEquals(vb,c.getBookList());
+
+    }
+    
 }
