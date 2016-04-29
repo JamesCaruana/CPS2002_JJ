@@ -1,3 +1,5 @@
+package cps2002assignment;
+
 import org.junit.*;
 import java.util.Vector;
 import java.util.Vector;

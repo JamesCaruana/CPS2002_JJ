@@ -1,3 +1,5 @@
+package cps2002assignment;
+
 public class BookNotFoundException extends Exception {
 
     public BookNotFoundException(String message) {

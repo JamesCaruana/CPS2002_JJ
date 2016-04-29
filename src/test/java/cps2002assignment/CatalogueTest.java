@@ -1,3 +1,5 @@
+package cps2002assignment;
+
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
@@ -28,7 +30,7 @@ public class CatalogueTest {
     @Test
     public void testGetBookList() throws Exception {
         Vector<Book> b =  new Vector<Book>();
-        Assert.assertEquals(b, c.getBookList());
+        Assert.assertEquals(b, c.getAllBooks());
     }
 
     @Test
@@ -36,7 +38,30 @@ public class CatalogueTest {
         Vector<Book> vb = new Vector<Book>();
         vb.add(b1);
         c.addBook(b1);
-        Assert.assertEquals(vb,c.getBookList());
+        Assert.assertEquals(vb,c.getAllBooks());
+    }
+    
+    @Test (expected =  BookNotUniqueException.class)
+    public void testThrowsBookNotUniqueException() throws Exception {
+        Book b4 = new Book(2,2,"A Game Of Thrones" , "George R.R Martin",Genre.FANTASY,1996,2);
+        c.addBook(b1);
+        c.addBook(b2);
+        c.addBook(b4);
+    }
+    
+    @Test
+    public void testRemoveBook() throws Exception {
+
+        Vector<Book>vb = new Vector<Book>();
+
+        vb.add(b1);
+
+        c.addBook(b1);
+        c.addBook(b2);
+
+        c.removeBook(b2);
+        Assert.assertEquals(vb,c.getAllBooks());
+
     }
     
     @Test (expected = BookNotFoundException.class)
@@ -47,7 +72,7 @@ public class CatalogueTest {
         c.addBook(b2);
 
         c.removeBook(b1);
-        Assert.assertEquals(vb,c.getBookList());
+        Assert.assertEquals(vb,c.getAllBooks());
 
     }
     

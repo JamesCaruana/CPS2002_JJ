@@ -1,3 +1,5 @@
+package cps2002assignment;
+
 import org.junit.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
