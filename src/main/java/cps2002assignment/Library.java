@@ -72,6 +72,27 @@ public class Library {
 
     }
     
+    public void returnBook(Book b) throws Exception{
+        boolean foundBook = false;
+        for(int i = 0; i < c.getAllBooks().size(); i++){ //check if book is in system
+            if(b == c.getAllBooks().get(i)){
+                foundBook = true;
+                break;
+            }
+        }
+
+        if(!foundBook){
+            throw new BookNotFoundException("Book with id "+b.getId()+" was not found");
+        }
+
+        if(b.getLoanee() == null){
+            throw new BookNotLoanedException("Book with id "+b.getId()+" was not loaned");
+        }
+
+        b.getLoanee().removeLoanedBook(b);
+
+    }
+    
     public Catalogue getCatalogue(){
         return c;
     }

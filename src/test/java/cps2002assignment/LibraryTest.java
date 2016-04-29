@@ -129,4 +129,39 @@ public class LibraryTest {
         l.loanBookTo(b3,u0);
     }
     
+    @Test
+    public void testReturnBook() throws Exception{
+        Vector<Book> vb = new Vector<Book>(); //simulate user loaned books
+        Book b1 = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b2 = new Book(1,1,"A Game Of Thrones" , "George R.R. Martin",Genre.FANTASY,1996,2);
+
+        l.addUser(u0);
+        l.getCatalogue().addBook(b1);
+        l.getCatalogue().addBook(b2);
+
+        l.loanBookTo(b1,u0);
+        l.loanBookTo(b2,u0);
+
+        l.returnBook(b2);
+        l.returnBook(b1);
+
+        Assert.assertEquals(u0.getLoanedBooks(),vb);
+        Assert.assertEquals(b1.getLoanDate(),null);
+        Assert.assertEquals(b1.getLoanee(),null);
+
+    }
+
+    @Test (expected = BookNotFoundException.class)
+    public void testReturnBookException1() throws Exception {
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        l.returnBook(b);
+    }
+
+    @Test(expected = BookNotLoanedException.class)
+    public void testReturnBookException2() throws Exception {
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        l.getCatalogue().addBook(b);
+        l.returnBook(b);
+    }
+    
 }
