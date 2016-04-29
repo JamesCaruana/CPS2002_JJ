@@ -16,8 +16,8 @@ public class CatalogueTest {
     @Before
     public void setUp() throws Exception {
         c = new Catalogue();
-        b0 = new Book(0,"A Game Of Thrones" , "George R.R. Martin",Genre.FANTASY,1996,1);
-        b1 = new Book(1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        //b0 = new Book(0,"A Game Of Thrones" , "George R.R. Martin",Genre.FANTASY,1996,1);
+        //b1 = new Book(1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         //b2 = new Book(2,"The Hitchhiker's Guide to the Galaxy" , "Douglas Adams",Genre.SCIENCE_FICTION,1979,1);
     }
 
