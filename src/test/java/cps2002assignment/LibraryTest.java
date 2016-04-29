@@ -1,6 +1,6 @@
 package cps2002assignment;
 
-import org.junit.After;
+import org.junit.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -61,4 +61,72 @@ public class LibraryTest {
         l.removeUser(u1);
         Assert.assertEquals(vu, l.getAllUsers());
     }
+    
+    @Test
+    public void testLoanBookTo() throws Exception {
+        Vector<Book> vb = new Vector<Book>(); //simulate user loaned books
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        vb.add(b);
+        l.addUser(u0);
+        l.getCatalogue().addBook(b);
+
+        l.loanBookTo(b,u0);
+        Assert.assertEquals(u0.getLoanedBooks(),vb);
+        Assert.assertEquals(u0.getLoanedBooks().get(0).getLoanee(),u0);
+        Assert.assertNotSame(u0.getLoanedBooks().get(0).getLoanDate(),null);
+    }
+
+    @Test (expected = UserNotFoundException.class)
+    public void testLoanBookToExp1() throws Exception {
+        Vector<Book> vb = new Vector<Book>(); //simulate user loaned books
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        vb.add(b);
+        l.getCatalogue().addBook(b);
+
+        l.loanBookTo(b,u0);
+
+    }
+
+    @Test (expected = BookNotFoundException.class)
+    public void testLoanBookToExp2() throws Exception {
+        Vector<Book> vb = new Vector<Book>(); //simulate user loaned books
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        vb.add(b);
+        l.addUser(u0);
+
+        l.loanBookTo(b,u0);
+
+    }
+
+    @Test (expected = BookAlreadyLoanedException.class)
+    public void testLoanBookToExp3() throws Exception {
+        Vector<Book> vb = new Vector<Book>(); //simulate user loaned books
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        vb.add(b);
+        l.addUser(u0);
+        l.addUser(u1);
+        l.getCatalogue().addBook(b);
+        l.loanBookTo(b,u0);
+        l.loanBookTo(b,u1);
+
+    }
+
+
+    @Test (expected = MaximumLoanedBooksException.class)
+    public void testLoanBookToExp4() throws Exception {
+        Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b1 = new Book(1,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b2 = new Book(2,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        Book b3 = new Book(3,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
+        l.addUser(u0);
+        l.getCatalogue().addBook(b);
+        l.getCatalogue().addBook(b1);
+        l.getCatalogue().addBook(b2);
+        l.getCatalogue().addBook(b3);
+        l.loanBookTo(b,u0);
+        l.loanBookTo(b1,u0);
+        l.loanBookTo(b2,u0);
+        l.loanBookTo(b3,u0);
+    }
+    
 }

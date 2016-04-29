@@ -32,4 +32,47 @@ public class Library {
         throw new UserNotFoundException("User with id "+u.getUserID()+" was not found");
     }
 
+    public void loanBookTo(Book b , User u) throws Exception {
+
+        boolean foundUser = false;
+        boolean foundBook = false;
+
+        for (int i = 0; i < userVector.size(); i++) { //check if user is in system
+            if (u == userVector.get(i)) {
+                foundUser = true;
+                break;
+            }
+        }
+
+        if(!foundUser){
+            throw new UserNotFoundException("User with id "+u.getUserID()+" was not found");
+        }
+
+        for(int i = 0; i < c.getAllBooks().size(); i++){ //check if book is in system
+            if(b == c.getAllBooks().get(i)){
+                foundBook = true;
+                break;
+            }
+        }
+
+        if(!foundBook){
+            throw new BookNotFoundException("Book with id "+b.getId()+" was not found");
+        }
+
+        if(b.getLoanee() != null){
+            throw new BookAlreadyLoanedException("Book with id "+b.getId()+ " was not found");
+        }
+
+        try{
+            u.addLoanedBook(b); // can throw BookOverdue & MaximumLoanedBooks exceptions
+            b.setLoanee(u);
+        }catch(Exception e){
+            throw e;
+        }
+
+    }
+    
+    public Catalogue getCatalogue(){
+        return c;
+    }
 }
