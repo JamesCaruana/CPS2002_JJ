@@ -11,4 +11,13 @@ public class Library {
     public Vector<User> getAllUsers() {
         return userVector;
     }
+    
+    public void addUser(User u) throws Exception{
+        for(int i = 0; i < userVector.size();i++){
+            if(userVector.get(i).getUserID() == u.getUserID()){
+                throw new UserNotUniqueException("User id already exists");
+            }
+        }
+        userVector.add(u);
+    }
 }

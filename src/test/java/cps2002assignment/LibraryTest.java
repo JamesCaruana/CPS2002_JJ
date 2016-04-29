@@ -29,4 +29,19 @@ public class LibraryTest {
         Vector<User> vu = new Vector<User>();
         Assert.assertEquals(vu,l.getAllUsers());
     }
+    
+    @Test
+    public void testAddUser() throws Exception {
+        Vector<User> vu = new Vector<User>();
+        vu.add(u0);
+        l.addUser(u0);
+        Assert.assertEquals(vu,l.getAllUsers());
+    }
+
+    @Test (expected = UserNotUniqueException.class)
+    public void testUserNotUniqueException() throws Exception {
+        User u3 = new User("James", "Caruana", 1,"123423");
+        l.addUser(u0);
+        l.addUser(u3);
+    }
 }
