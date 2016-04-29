@@ -101,4 +101,15 @@ public class CatalogueTest {
         Assert.assertEquals(vb,c.searchByGenre(Genre.FANTASY));
     }
     
+    @Test
+    public void testSearchByYearOfPublication() throws Exception {
+        Vector<Book> vb = new Vector<Book>();
+        vb.add(b1);
+
+        c.addBook(b1);
+        c.addBook(b2);
+        c.addBook(b3);
+        Assert.assertEquals(vb,c.searchByYearOfPublication(1999));
+    }
+    
 }

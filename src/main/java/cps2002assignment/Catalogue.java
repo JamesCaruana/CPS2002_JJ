@@ -51,4 +51,16 @@ public class Catalogue {
         }
         return bookVector;
     }
+    
+    Vector<Book> searchByYearOfPublication(int search) {
+        Vector<Book> bookVector = new Vector<Book>();
+        for(int count = 0; count < bookList.size(); count++){
+            if (search == (bookList.get(count).getYear())) {
+                bookVector.add(bookList.get(count));
+                System.out.println(bookList.get(count).toString());
+            }
+        }
+        return bookVector;
+    }
+    
 }
