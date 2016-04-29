@@ -10,8 +10,8 @@ import static org.junit.Assert.*;
  */
 public class CatalogueTest {
 
-    private Catalogue c;
-    private Book b0, b1, b2;
+    static Catalogue c;
+    static Book b0, b1, b2;
 
     @Before
     public void setUp() throws Exception {
