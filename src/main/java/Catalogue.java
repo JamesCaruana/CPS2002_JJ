@@ -8,5 +8,7 @@ public class Catalogue {
     public Vector<Book> getBookList(){
         return bookList;
     }
-
+    public void addBook(Book b) {
+        bookList.add(b);
+    }
 }

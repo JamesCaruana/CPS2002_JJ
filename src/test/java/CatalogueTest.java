@@ -29,4 +29,13 @@ public class CatalogueTest {
         Assert.assertEquals(b, c.getBookList());
     }
     
+    @Test
+    public void testAddBook() throws Exception {
+        Vector<Book> vb = new Vector<Book>();
+        Book b0 = new Book(0,"A Game Of Thrones" , "George R.R. Martin",Genre.FANTASY,1996,1);
+        vb.add(b0);
+        c.addBook(b0);
+        Assert.assertEquals(vb,c.getBookList());
+    }
+    
 }
