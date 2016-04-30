@@ -93,6 +93,10 @@ public class Library {
 
     }
     
+    public int noOfUsers() {
+        return userVector.size();
+    }
+    
     public Catalogue getCatalogue(){
         return c;
     }

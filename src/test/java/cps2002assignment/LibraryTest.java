@@ -97,6 +97,13 @@ public class LibraryTest {
         l.loanBookTo(b,u0);
 
     }
+    
+    @Test
+    public void testGetCatalogue()throws Exception{
+        Catalogue c = new Catalogue();
+        Assert.assertEquals(c.getAllBooks(),l.getCatalogue().getAllBooks());
+    }
+
 
     @Test (expected = BookAlreadyLoanedException.class)
     public void testLoanBookToExp3() throws Exception {
@@ -162,6 +169,15 @@ public class LibraryTest {
         Book b = new Book(0,1,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         l.getCatalogue().addBook(b);
         l.returnBook(b);
+    }
+    
+    @Test
+    public void testNoOfUsers() throws Exception {
+        Vector<User> vu = new Vector<User>();
+
+        l.addUser(u0);
+        l.addUser(u1);
+        Assert.assertEquals(2, l.noOfUsers());
     }
     
 }
