@@ -1,5 +1,8 @@
 package cps2002assignment;
 
+import Exceptions.MaximumLoanedBooksException;
+import Exceptions.BookOverdueException;
+import Exceptions.BookNotFoundException;
 import org.junit.*;
 import java.util.Vector;
 import java.util.Vector;

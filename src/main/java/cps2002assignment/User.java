@@ -1,5 +1,8 @@
 package cps2002assignment;
 
+import Exceptions.MaximumLoanedBooksException;
+import Exceptions.BookOverdueException;
+import Exceptions.BookNotFoundException;
 import java.util.Date;
 import java.util.Vector;
 import java.text.SimpleDateFormat;

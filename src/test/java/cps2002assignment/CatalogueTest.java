@@ -1,5 +1,7 @@
 package cps2002assignment;
 
+import Exceptions.BookNotUniqueException;
+import Exceptions.BookNotFoundException;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;

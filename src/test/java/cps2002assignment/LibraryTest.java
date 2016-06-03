@@ -1,5 +1,11 @@
 package cps2002assignment;
 
+import Exceptions.UserNotUniqueException;
+import Exceptions.UserNotFoundException;
+import Exceptions.MaximumLoanedBooksException;
+import Exceptions.BookNotLoanedException;
+import Exceptions.BookNotFoundException;
+import Exceptions.BookAlreadyLoanedException;
 import org.junit.*;
 import org.junit.Assert;
 import org.junit.Before;

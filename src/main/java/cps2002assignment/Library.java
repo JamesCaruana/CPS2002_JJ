@@ -1,6 +1,11 @@
 
 package cps2002assignment;
 
+import Exceptions.UserNotUniqueException;
+import Exceptions.UserNotFoundException;
+import Exceptions.BookNotLoanedException;
+import Exceptions.BookNotFoundException;
+import Exceptions.BookAlreadyLoanedException;
 import java.util.Vector;
 
 public class Library {

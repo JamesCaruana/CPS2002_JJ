@@ -1,5 +1,7 @@
 package cps2002assignment;
 
+import Exceptions.BookNotUniqueException;
+import Exceptions.BookNotFoundException;
 import java.util.*;
 
 public class Catalogue {
