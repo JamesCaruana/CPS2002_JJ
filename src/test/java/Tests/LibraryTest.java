@@ -1,5 +1,10 @@
-package cps2002assignment;
+package Tests;
 
+import CPS2002Assignment.Library;
+import CPS2002Assignment.Genre;
+import CPS2002Assignment.Catalogue;
+import CPS2002Assignment.Book;
+import CPS2002Assignment.User;
 import Exceptions.UserNotUniqueException;
 import Exceptions.UserNotFoundException;
 import Exceptions.MaximumLoanedBooksException;
@@ -21,6 +26,7 @@ public class LibraryTest {
     @Before
     public void setUp() throws Exception {
         l = new Library();
+        l.resetCatalogue();
         u0 = new User("John", "Cena", 1, "515-808-2362");
         u1 = new User("Leslie", "Carabott", 26, "79230696");
     }
@@ -49,6 +55,13 @@ public class LibraryTest {
         User u3 = new User("James", "Caruana", 1,"123423");
         l.addUser(u0);
         l.addUser(u3);
+    }
+    
+    @Test
+    public void testGetCatalogue()throws Exception{
+        Catalogue.clearCatalogue();
+        Catalogue c = Catalogue.getCaltalogue();
+        Assert.assertEquals(c.getAllBooks(),l.getCatalogue().getAllBooks());
     }
     
     @Test
@@ -104,13 +117,6 @@ public class LibraryTest {
 
     }
     
-    @Test
-    public void testGetCatalogue()throws Exception{
-        Catalogue c = new Catalogue();
-        Assert.assertEquals(c.getAllBooks(),l.getCatalogue().getAllBooks());
-    }
-
-
     @Test (expected = BookAlreadyLoanedException.class)
     public void testLoanBookToExp3() throws Exception {
         Vector<Book> vb = new Vector<Book>(); //simulate user loaned books

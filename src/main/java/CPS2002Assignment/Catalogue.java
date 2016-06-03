@@ -1,4 +1,4 @@
-package cps2002assignment;
+package CPS2002Assignment;
 
 import Exceptions.BookNotUniqueException;
 import Exceptions.BookNotFoundException;
@@ -6,8 +6,21 @@ import java.util.*;
 
 public class Catalogue {
     
+    private Catalogue(){}
+
     private Vector<Book> bookList = new Vector<Book>();
-   
+    private static Catalogue caltalogueSingleton = new Catalogue();
+
+    //return Singleton
+
+    public static Catalogue getCaltalogue() {
+        return caltalogueSingleton;
+    }
+
+    public static void clearCatalogue(){
+        caltalogueSingleton = new Catalogue();
+    }
+    
     public Vector<Book> getAllBooks(){
         return bookList;
     }
@@ -32,7 +45,7 @@ public class Catalogue {
         throw new BookNotFoundException("ERROR : Book with id "+b.getId()+" was not found");
     }
     
-    Vector<Book> searchByTitle(String search) {
+    public Vector<Book> searchByTitle(String search) {
         Vector<Book> bookVector = new Vector<Book>();
         for(int count = 0; count < bookList.size(); count++){
             if (bookList.get(count).getTitle().contains(search)) {
@@ -43,7 +56,7 @@ public class Catalogue {
         return bookVector;
     }
     
-    Vector<Book> searchByGenre(Genre g) {
+    public Vector<Book> searchByGenre(Genre g) {
         Vector<Book> bookVector = new Vector<Book>();
         for(int count = 0; count < bookList.size(); count++){
             if (bookList.get(count).getGenre().equals(g)) {
@@ -54,7 +67,7 @@ public class Catalogue {
         return bookVector;
     }
     
-    Vector<Book> searchByYearOfPublication(int search) {
+    public Vector<Book> searchByYearOfPublication(int search) {
         Vector<Book> bookVector = new Vector<Book>();
         for(int count = 0; count < bookList.size(); count++){
             if (search == (bookList.get(count).getYear())) {

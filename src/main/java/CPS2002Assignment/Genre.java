@@ -1,4 +1,4 @@
-package cps2002assignment;
+package CPS2002Assignment;
 
 public enum Genre {
     FANTASY,

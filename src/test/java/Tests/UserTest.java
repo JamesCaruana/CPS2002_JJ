@@ -1,5 +1,8 @@
-package cps2002assignment;
+package Tests;
 
+import CPS2002Assignment.Genre;
+import CPS2002Assignment.Book;
+import CPS2002Assignment.User;
 import Exceptions.MaximumLoanedBooksException;
 import Exceptions.BookOverdueException;
 import Exceptions.BookNotFoundException;

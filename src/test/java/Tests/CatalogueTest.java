@@ -1,5 +1,8 @@
-package cps2002assignment;
+package Tests;
 
+import CPS2002Assignment.Genre;
+import CPS2002Assignment.Book;
+import CPS2002Assignment.Catalogue;
 import Exceptions.BookNotUniqueException;
 import Exceptions.BookNotFoundException;
 import junit.framework.Assert;
@@ -19,7 +22,8 @@ public class CatalogueTest {
 
     @Before
     public void setUp() throws Exception {
-        c = new Catalogue();
+        Catalogue.clearCatalogue();
+        c = Catalogue.getCaltalogue(); //singleton update
         b1 = new Book(1,0 ,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
         b2 = new Book(2,1, "The Hitchhiker's Guide to the Galaxy" , "Douglas Adams",Genre.SCIENCE_FICTION,1979,1);
         b3 = new Book(3,2,"A Game Of Thrones" , "George R.R Martin",Genre.FANTASY,1996,2);
@@ -27,7 +31,7 @@ public class CatalogueTest {
 
     @After
     public void tearDown() throws Exception {
-
+        Catalogue.clearCatalogue();
     }
 
     @Test
@@ -58,10 +62,8 @@ public class CatalogueTest {
         Vector<Book>vb = new Vector<Book>();
 
         vb.add(b1);
-
         c.addBook(b1);
         c.addBook(b2);
-
         c.removeBook(b2);
         Assert.assertEquals(vb,c.getAllBooks());
 

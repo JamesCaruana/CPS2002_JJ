@@ -1,5 +1,5 @@
 
-package cps2002assignment;
+package CPS2002Assignment;
 
 import Exceptions.UserNotUniqueException;
 import Exceptions.UserNotFoundException;
@@ -11,7 +11,7 @@ import java.util.Vector;
 public class Library {
 
     private Vector<User> userVector = new Vector<User>();
-    private Catalogue c = new Catalogue();
+    private Catalogue c = Catalogue.getCaltalogue();
     
     public Vector<User> getAllUsers() {
         return userVector;
@@ -104,5 +104,10 @@ public class Library {
     
     public Catalogue getCatalogue(){
         return c;
+    }
+    
+    public void resetCatalogue(){
+        Catalogue.clearCatalogue();
+        c = Catalogue.getCaltalogue();
     }
 }
