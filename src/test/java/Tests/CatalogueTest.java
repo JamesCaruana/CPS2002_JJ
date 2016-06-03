@@ -89,7 +89,21 @@ public class CatalogueTest {
         c.addBook(b2);
         c.addBook(b3);
 
-        assertEquals(vb,c.search(new AuthorFilter("George R.R. Martin")));
+        Assert.assertEquals(vb,c.search(new AuthorFilter("George R.R. Martin")));
+    }
+    
+    @Test
+    public void testFilterEdition() throws Exception{
+        Vector<Book>vb = new Vector<Book>();
+        vb.add(b1);
+        vb.add(b2);
+
+        c.addBook(b1);
+        c.addBook(b2);
+        c.addBook(b3);
+
+
+        Assert.assertEquals(vb,c.search(new EditionFilter(1)));
     }
     
     @Test
