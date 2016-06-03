@@ -5,6 +5,7 @@ import CPS2002Assignment.Book;
 import CPS2002Assignment.Catalogue;
 import Exceptions.BookNotUniqueException;
 import Exceptions.BookNotFoundException;
+import Filters.*;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
@@ -12,9 +13,6 @@ import org.junit.Test;
 import java.util.Vector;
 import static org.junit.Assert.*;
 
-/**
- * Created by James on 29/04/2016.
- */
 public class CatalogueTest {
 
     static Catalogue c;
@@ -24,9 +22,9 @@ public class CatalogueTest {
     public void setUp() throws Exception {
         Catalogue.clearCatalogue();
         c = Catalogue.getCaltalogue(); //singleton update
-        b1 = new Book(1,0 ,"A Clash Of Kings" , "George R.R. Martin",Genre.FANTASY,1999,1);
-        b2 = new Book(2,1, "The Hitchhiker's Guide to the Galaxy" , "Douglas Adams",Genre.SCIENCE_FICTION,1979,1);
-        b3 = new Book(3,2,"A Game Of Thrones" , "George R.R Martin",Genre.FANTASY,1996,2);
+        b1 = new Book(1, 0, "A Clash Of Kings" , "George R.R. Martin", Genre.FANTASY, 1999, 1);
+        b2 = new Book(2, 1, "The Hitchhiker's Guide to the Galaxy", "Douglas Adams", Genre.SCIENCE_FICTION, 1979, 1);
+        b3 = new Book(3, 2, "A Game Of Thrones" , "George R.R. Martin", Genre.FANTASY, 1996, 2);
     }
 
     @After
@@ -50,7 +48,7 @@ public class CatalogueTest {
     
     @Test (expected =  BookNotUniqueException.class)
     public void testThrowsBookNotUniqueException() throws Exception {
-        Book b4 = new Book(2,2,"A Game Of Thrones" , "George R.R Martin",Genre.FANTASY,1996,2);
+        Book b4 = new Book(2,2,"A Game Of Thrones" , "George R.R. Martin",Genre.FANTASY,1996,2);
         c.addBook(b1);
         c.addBook(b2);
         c.addBook(b4);
@@ -79,6 +77,19 @@ public class CatalogueTest {
         c.removeBook(b1);
         Assert.assertEquals(vb,c.getAllBooks());
 
+    }
+    
+    @Test
+    public void testFilterAuthor() throws Exception{
+        Vector<Book> vb = new Vector<Book>();
+        vb.add(b1);
+        vb.add(b3);
+
+        c.addBook(b1);
+        c.addBook(b2);
+        c.addBook(b3);
+
+        assertEquals(vb,c.search(new AuthorFilter("George R.R. Martin")));
     }
     
     @Test

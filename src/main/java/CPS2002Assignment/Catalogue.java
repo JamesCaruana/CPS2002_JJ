@@ -2,6 +2,8 @@ package CPS2002Assignment;
 
 import Exceptions.BookNotUniqueException;
 import Exceptions.BookNotFoundException;
+import Filters.Filter;
+
 import java.util.*;
 
 public class Catalogue {
@@ -43,6 +45,10 @@ public class Catalogue {
             }
         }
         throw new BookNotFoundException("ERROR : Book with id "+b.getId()+" was not found");
+    }
+    
+    public Vector<Book> search(Filter f){
+        return f.meetFilter(bookList);
     }
     
     public Vector<Book> searchByTitle(String search) {
