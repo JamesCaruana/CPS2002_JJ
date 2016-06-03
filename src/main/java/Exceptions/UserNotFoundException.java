@@ -1,5 +1,5 @@
 
-package cps2002assignment;
+package Exceptions;
 
 public class UserNotFoundException extends Exception{
     public UserNotFoundException(String message){

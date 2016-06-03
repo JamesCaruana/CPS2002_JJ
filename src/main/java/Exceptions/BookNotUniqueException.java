@@ -1,4 +1,4 @@
-package cps2002assignment;
+package Exceptions;
 
 public class BookNotUniqueException extends Exception {
 
