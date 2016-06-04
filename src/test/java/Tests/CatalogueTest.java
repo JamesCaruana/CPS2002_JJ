@@ -107,6 +107,19 @@ public class CatalogueTest {
     }
     
     @Test
+    public void testFilterGenre() throws Exception{
+        Vector<Book>vb = new Vector<Book>();
+        vb.add(b1);
+        vb.add(b3);
+
+        c.addBook(b1);
+        c.addBook(b2);
+        c.addBook(b3);
+
+        Assert.assertEquals(vb,c.search(new GenreFilter(Genre.FANTASY)));
+    }
+    
+    @Test
     public void testSearchByTitle() throws Exception {
         Vector<Book> vb = new Vector<Book>();
         vb.add(b1);
