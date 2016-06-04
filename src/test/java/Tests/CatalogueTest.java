@@ -132,6 +132,18 @@ public class CatalogueTest {
     }
     
     @Test
+    public void testFilterYear() throws Exception{
+        Vector<Book>vb = new Vector<Book>();
+        vb.add(b2);
+
+        c.addBook(b1);
+        c.addBook(b2);
+        c.addBook(b3);
+
+        Assert.assertEquals(vb,c.search(new YearFilter(1979)));
+    }
+    
+    @Test
     public void testSearchByTitle() throws Exception {
         Vector<Book> vb = new Vector<Book>();
         vb.add(b1);
