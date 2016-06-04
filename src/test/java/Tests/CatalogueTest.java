@@ -169,38 +169,17 @@ public class CatalogueTest {
     }
     
     @Test
-    public void testSearchByTitle() throws Exception {
-        Vector<Book> vb = new Vector<Book>();
-        vb.add(b1);
-        vb.add(b3);
+    public void testFilterNot() throws Exception{
+        Vector<Book>vb = new Vector<Book>();
+        vb.add(b2);
 
         c.addBook(b1);
         c.addBook(b2);
         c.addBook(b3);
-        Assert.assertEquals(vb,c.searchByTitle("A"));
-    }
-    
-    @Test
-    public void testSearchByGenre() throws Exception {
-        Vector<Book> vb = new Vector<Book>();
-        vb.add(b1);
-        vb.add(b3);
 
-        c.addBook(b1);
-        c.addBook(b2);
-        c.addBook(b3);
-        Assert.assertEquals(vb,c.searchByGenre(Genre.FANTASY));
-    }
-    
-    @Test
-    public void testSearchByYearOfPublication() throws Exception {
-        Vector<Book> vb = new Vector<Book>();
-        vb.add(b1);
 
-        c.addBook(b1);
-        c.addBook(b2);
-        c.addBook(b3);
-        Assert.assertEquals(vb,c.searchByYearOfPublication(1999));
+        Assert.assertEquals(vb,c.search(new NotFilter(new AuthorFilter("George R.R. Martin"))));
+
     }
     
 }
