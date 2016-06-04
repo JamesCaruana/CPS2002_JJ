@@ -144,6 +144,18 @@ public class CatalogueTest {
     }
     
     @Test
+    public void testFilterAnd() throws Exception{
+        Vector<Book>vb = new Vector<Book>();
+        vb.add(b3);
+
+        c.addBook(b1);
+        c.addBook(b2);
+        c.addBook(b3);
+
+        Assert.assertEquals(vb,c.search(new AndFilter(new GenreFilter(Genre.FANTASY),new YearFilter(1996))));
+    }
+    
+    @Test
     public void testSearchByTitle() throws Exception {
         Vector<Book> vb = new Vector<Book>();
         vb.add(b1);
