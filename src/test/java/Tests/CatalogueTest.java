@@ -120,6 +120,18 @@ public class CatalogueTest {
     }
     
     @Test
+    public void testFilterTitle() throws Exception{
+        Vector<Book>vb = new Vector<Book>();
+        vb.add(b1);
+
+        c.addBook(b1);
+        c.addBook(b2);
+        c.addBook(b3);
+
+        Assert.assertEquals(vb,c.search(new TitleFilter("A Clash Of Kings")));
+    }
+    
+    @Test
     public void testSearchByTitle() throws Exception {
         Vector<Book> vb = new Vector<Book>();
         vb.add(b1);
