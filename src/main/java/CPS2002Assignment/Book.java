@@ -2,6 +2,7 @@ package CPS2002Assignment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
 public class Book {
     private int isbn;
@@ -13,6 +14,7 @@ public class Book {
     private int edition;
     private Date loanDate;
     private User loanee;
+    private Vector<Observer> vo = new Vector<Observer>(); // interested users --> OBSERVER ADDITION
 
 
     // Create a Book
@@ -65,6 +67,10 @@ public class Book {
         return id;
     }
 
+    public Vector<Observer> getObserverVector(){
+        return vo;
+    }
+
     // setters
     public void setTitle(String title) {
         this.title = title;
@@ -109,8 +115,31 @@ public class Book {
         loanDate = new Date();
     }
 
-    public void setLoanDate(Object o){
-        loanDate = null;
+    public void setLoanDate(Object o){loanDate = null; }
+
+
+    /* OBSERVER */
+
+    public void addObserver(Observer observer){
+        vo.add(observer);
     }
-    
+
+    public void removeObserver(Observer observer){
+        vo.remove(observer);
+    }
+
+    public User notifyObservers(){
+        int newPos = 0;
+        User ret = null;
+        for (Observer observer : vo) { //send new position to each observer in vector
+            User temp = observer.update(this,newPos);
+            if(temp != null && ret == null){
+                ret = temp;
+            }
+            newPos++; //increment position
+        }
+        return ret;
+    }
+
+
 }
