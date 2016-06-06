@@ -6,14 +6,13 @@ import Exceptions.BookNotFoundException;
 import java.util.Date;
 import java.util.Vector;
 import java.text.SimpleDateFormat;
-import javafx.util.Pair;
 
 public class User implements Observer {
 
     private String name, surname, phoneNumber;
     private int id;
     private Vector<Book> loanedBooks;
-    private Vector<Pair<Book, Integer>> interestedBooks; //vector of Pair<Book,queue number> ---> OBSERVER ADDITION
+    private Vector<InterestedBook> interestedBooks; //vector of InterestedBooks ---> OBSERVER ADDITION
 
     // Create a User
     public User(String name, String surname, int id, String phoneNumber) {
@@ -111,8 +110,8 @@ public class User implements Observer {
     @Override
     public User update(Book b, int pos){
         for(int i = 0; i < interestedBooks.size(); i++) {//search for book
-            if(interestedBooks.get(i).getKey().getId() == b.getId()){ //if id match
-                interestedBooks.set(i,new Pair(b,pos));
+            if(interestedBooks.get(i).getInterestedBook().getId() == b.getId()){ //if id match
+                interestedBooks.set(i,new InterestedBook(b,pos));
                 System.out.println("User id : "+id+" Book id : "+b.getId()+"  New Position : "+pos);
                 if(pos == 0){
                     return this;
@@ -120,7 +119,7 @@ public class User implements Observer {
             }
         }
         //book not found in interested books
-        interestedBooks.add(new Pair(b,pos));
+        interestedBooks.add(new InterestedBook(b,pos));
         System.out.println("Added interested book - User id : "+id+" Book id : "+b.getId()+"  New Position : "+pos);
         return this;
     }

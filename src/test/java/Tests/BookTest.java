@@ -6,6 +6,7 @@ import CPS2002Assignment.User;
 import org.junit.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javafx.util.Pair;
 import static org.junit.Assert.*;
 
 public class BookTest {
