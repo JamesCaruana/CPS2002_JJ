@@ -6,11 +6,11 @@ import java.util.*;
 
 public class Library {
 
-    private Vector<User> userVector = new Vector<User>();
+    private Vector<User> userVector = new Vector<User>(); //global vector which stores users 
     private Catalogue c = Catalogue.getCaltalogue();
 
     public void addUser(User u) throws Exception {
-        for (int i = 0; i < userVector.size(); i++) {
+        for (int i = 0; i < userVector.size(); i++) { //checks that user added has unique id
             if (userVector.get(i).getUserID() == u.getUserID()) {
                 throw new UserNotUniqueException("User id already exists");
             }
@@ -57,7 +57,7 @@ public class Library {
         }
 
         if (b.getLoanee() != null) { // if there is a loanee
-            //Exception will still be thrown but user will be added to observer list -->OBSERVER ADDITION
+            //Exception will still be thrown but user will be added to observer list
 
             //check if add is possible
             Date now = new Date();
@@ -134,7 +134,7 @@ public class Library {
     }
 
     public int noOfUsers() {
-        return userVector.size();
+        return userVector.size(); //returns size of vector
     }
 
     public Vector<User> getAllUsers() {

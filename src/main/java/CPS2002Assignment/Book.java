@@ -100,6 +100,7 @@ public class Book {
         this.loanee = loanee;
     }
 
+    // method which sets loan date
     public void setLoanDate(String date, String time) throws Exception {
         String format = "dd/MM/yyyy hh:mm a";
         SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -119,8 +120,7 @@ public class Book {
         loanDate = null;
     }
 
-
-    /* OBSERVER */
+    // observer design pattern methods
     public void addObserver(Observer observer) {
         vo.add(observer);
     }
